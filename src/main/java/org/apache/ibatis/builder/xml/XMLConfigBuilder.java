@@ -358,13 +358,14 @@ public class XMLConfigBuilder extends BaseBuilder {
     }
 
     /**
-     * 解析<properties>配置信息
+     * 解析<properties>配置信息 封装成 configuration 对象
      *
      * @param context
      * @throws Exception
      */
     private void propertiesElement(XNode context) throws Exception {
         if (context != null) {
+            // todo 2021 22:14
             Properties defaults = context.getChildrenAsProperties();
             /**
              * 这两种方式都可以用来引入配置文件。但是它们又有所不同:
