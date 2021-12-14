@@ -143,6 +143,9 @@ public class XMLConfigBuilder extends BaseBuilder {
              * 为什么解析<settings>中的值为Properties不能都在settingsAsProperties方法中完成，而要单独在loadCustomVfs中完成？
              * 回答；由于vfsImpl配置的是Class，需要通过ClassLoader加载为对象，赋值到Configuration里，而不像其他String类型的value
              * ，可以直接赋值进去并使用。所以单独在loadCustomVfs方法中进行了Configuration中的vfsImpl赋值操作。
+             *
+             * VFS含义是虚拟文件系统；主要是通过程序能够方便读取本地文件系统、FTP文件系统等系统中的文件资源。
+             * Mybatis中提供了VFS这个配置，主要是通过该配置可以加载自定义的虚拟文件系统应用程序
              */
             loadCustomVfs(settings);
 
