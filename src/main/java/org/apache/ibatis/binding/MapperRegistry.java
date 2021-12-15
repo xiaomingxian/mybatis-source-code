@@ -35,7 +35,7 @@ import java.util.Set;
  */
 public class MapperRegistry {
 
-    // Configuration对象，MyBatis全局唯一的配置对象，其中包含了所有配置信息
+    // Configuration对象，MyBatis全局唯一的配置对象，其中包含了所有配置信息 #配置环节生成
     private final Configuration config;
     // 记录了Mapper接口与对应MapperProxyFactory之间的关系
     private final Map<Class<?>, MapperProxyFactory<?>> knownMappers = new HashMap();
@@ -48,18 +48,19 @@ public class MapperRegistry {
     @SuppressWarnings("unchecked")
     public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
         /**
-         * 加载mybatis-config.xml配置的<mapper>配置，根据指定type，查找对应的MapperProxyFactory对象
+         * 必看：加载mybatis-config.xml配置的<mapper>配置，根据指定type，查找对应的MapperProxyFactory对象
+         *   knownMappers.put(type, new MapperProxyFactory<T>(type));
          **/
         // eg1: 获得UserMapper的mapperProxyFactory
         final MapperProxyFactory<T> mapperProxyFactory = (MapperProxyFactory<T>) knownMappers.get(type);
         /**
-         * 如果没配置<mapper>，则找不到对应的MapperProxyFactory，抛出BindingException异常
+         * 必看：如果没配置<mapper>，则找不到对应的MapperProxyFactory，抛出BindingException异常
          */
         if (mapperProxyFactory == null) {
             throw new BindingException("Type " + type + " is not known to the MapperRegistry.");
         }
         try {
-            /** 使用该工厂类生成MapperProxy的代理对象*/
+            /** 必看：使用该工厂类生成MapperProxy的代理对象*/
             return mapperProxyFactory.newInstance(sqlSession);
         } catch (Exception e) {
             throw new BindingException("Error getting mapper instance. Cause: " + e, e);

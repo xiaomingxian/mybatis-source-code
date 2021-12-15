@@ -57,7 +57,7 @@ public class MapperMethod {
     }
 
     /**
-     * MapperMethod采用命令模式运行，根据上下文跳转，它可能跳转到许多方法中。实际上它最后就是通过SqlSession对象去运行对象的SQL。
+     * 必看：MapperMethod采用命令模式运行，根据上下文跳转，它可能跳转到许多方法中。实际上它最后就是通过SqlSession对象去运行对象的SQL。
      */
     // eg1: sqlSession = DefaultSqlSession@1953  args = {2L}
     public Object execute(SqlSession sqlSession, Object[] args) {
@@ -359,7 +359,7 @@ public class MapperMethod {
             /** 获得方法method中，入参为ResultHandler类型的下标号 */
             this.resultHandlerIndex = getUniqueParamIndex(method, ResultHandler.class);
 
-            // eg1:生成paramNameResolver实例对象
+            // eg1:生成paramNameResolver实例对象 入参名称解析起 eg:@Param("xxx")
             /** 生成paramNameResolver实例对象, 构造方法中已经对参数序号和参数名称进行了映射 */
             this.paramNameResolver = new ParamNameResolver(configuration, method);
         }

@@ -101,6 +101,7 @@ public class MapperProxyFactory<T> {
 
         /**
          * 创建MapperProxy对象，每次调用都会创建新的MapperProxy对象，MapperProxy implements InvocationHandler
+         * 说明(可搜索)：public class MapperProxy<T> implements InvocationHandler, Serializable
          */
         final MapperProxy<T> mapperProxy = new MapperProxy<T>(sqlSession, mapperInterface, methodCache);
         return newInstance(mapperProxy);
