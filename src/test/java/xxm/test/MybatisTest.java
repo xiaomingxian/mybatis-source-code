@@ -12,10 +12,14 @@ import java.io.InputStream;
 import java.util.Map;
 
 public class MybatisTest {
+    /**
+     * 第一阶段：获取MapperProxy
+     * 第二阶段：获取mapperMethod对象 mapperMethod.execute()
+     *
+     */
+
+
     public static void main(String[] args) throws Exception {
-        /**
-         * 1.第一阶段 生成Mapper
-         */
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         /**1 创建SqlSessionFacory -> 构建出一个Configuration(其中还包括MappedStatements XXXMapper的配置类)
@@ -25,9 +29,6 @@ public class MybatisTest {
          */
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         /******************************分割线******************************/
-        /**
-         * 2.第二阶段获取mapperMethod对象
-         */
         SqlSession sqlSession = sqlSessionFactory.openSession();
         //2 获取Mapper
         //2-1 MapperRegister 类扫描包注册mapper( knownMappers.put(type, new MapperProxyFactory<T>(type));) //type就是DemoMapper.class
